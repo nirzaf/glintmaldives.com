@@ -1,3 +1,4 @@
-Replace the text of below HTML section with suitable text from below given content 
+Replace the text of below HTML section with suitable text from below given content, 
+Generate the suitable sample text for the below html section  
 
 ```
