@@ -1,7 +1,9 @@
 Headline: Trusted MEP Solutions Provider
 
 Introduction Paragraph:
-We are a leading MEP (mechanical, electrical and plumbing) design and services company catering to the Sri Lankan market as well as regionally and internationally. With a vision to deliver reliable, quality solutions that add value, we have been providing innovative and technically sound MEP solutions across projects of varying complexity and scale.
+We are a leading MEP (mechanical, electrical and plumbing) design and services company catering to the Sri Lankan market as well as regionally and internationally. 
+With a vision to deliver reliable, quality solutions that add value, we have been providing innovative and technically sound MEP solutions 
+across projects of varying complexity and scale.
 
 Our Services:
 - MEP Studies 
@@ -14,10 +16,12 @@ Our Services:
 - Supervision
 - As-Built Drawings
 
-We handle small residential projects up to large infrastructure developments. Our expertise spans HVAC, plumbing, fire protection, electricals, low current systems etc.
+We handle small residential projects up to large infrastructure developments. 
+Our expertise spans HVAC, plumbing, fire protection, electricals, low current systems etc.
 
 Our Mission: 
-To provide cutting-edge and environmentally sustainable MEP services that are distinguished by technical excellence. We measure our success by the experience we provide - understanding that our work impacts communities and people's lives. 
+To provide cutting-edge and environmentally sustainable MEP services that are distinguished by technical excellence. 
+We measure our success by the experience we provide - understanding that our work impacts communities and people's lives. 
 
 Our Projects:
 Highlight key projects like Solitaire Apartments Maldives, CROSSROADS Maldives, IGMH Hospital Fire System, AZZROVA Maldives Solar PV System etc.
