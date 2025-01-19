@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-gray-800;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-2 rounded-full transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-secondary hover:bg-opacity-90;
+  }
+
+  .section-title {
+    @apply text-center mb-12;
+  }
+
+  .section-title h2 {
+    @apply text-sm font-medium text-gray-500 uppercase tracking-widest mb-2;
+  }
+
+  .section-title p {
+    @apply text-3xl font-bold text-gray-900;
+  }
+}

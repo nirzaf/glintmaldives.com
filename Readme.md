@@ -53,3 +53,69 @@ Based on the document, the services provided by Glint Maldives are:
 8. Low current systems design (fire alarm, voice evacuation, communication systems, CATV, MATV, IPTV, AV audio video systems, sound systems, conference systems, nurses call system, CCTV, access door system, intrusion detection system, parking management system, queuing system).
 
 9. Electrical design (medium voltage network design, substations, switchgears, RMUs, cables, schematic diagrams).
+
+# Development Guide
+
+## Tech Stack
+
+- React 18 with TypeScript
+- Vite for build tooling
+- Tailwind CSS for styling
+- React Router for routing
+- Framer Motion for animations
+- AOS (Animate on Scroll) for scroll animations
+- React Icons for icons
+- Headless UI for accessible components
+
+## Prerequisites
+
+- Node.js 18+ 
+- pnpm (recommended) or npm
+
+## Getting Started
+
+1. Install dependencies:
+```bash
+pnpm install
+```
+
+2. Start development server:
+```bash
+pnpm dev
+```
+
+3. Build for production:
+```bash
+pnpm build
+```
+
+4. Preview production build:
+```bash
+pnpm preview
+```
+
+## Project Structure
+
+```
+src/
+  ├── components/     # Reusable UI components
+  ├── pages/         # Page components
+  ├── assets/        # Static assets
+  ├── styles/        # Global styles
+  ├── hooks/         # Custom React hooks
+  ├── utils/         # Utility functions
+  ├── App.tsx        # Root component
+  └── main.tsx       # Entry point
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License.
