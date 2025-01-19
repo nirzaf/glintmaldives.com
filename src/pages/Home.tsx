@@ -33,7 +33,7 @@ export default function Home() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: 'url(/assets/img/hero-bg.jpg)',
+            backgroundImage: 'url(/public/assets/hero-bg.jpg)',
             backgroundColor: 'rgba(0, 0, 0, 0.7)',
             backgroundBlendMode: 'overlay',
           }}
@@ -95,7 +95,7 @@ export default function Home() {
               transition={{ duration: 0.8 }}
             >
               <img
-                src="/assets/img/about.jpg"
+                src="/public/assets/about.jpg"
                 alt="About Glint Maldives"
                 className="rounded-lg shadow-xl"
               />
