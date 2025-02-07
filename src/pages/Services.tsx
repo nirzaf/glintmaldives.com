@@ -1,7 +1,30 @@
-import { motion } from 'framer-motion'
-import { RiCheckLine } from 'react-icons/ri'
+import React from 'react';
+import { RiCheckLine } from 'react-icons/ri';
 
-export default function Services() {
+interface ServiceCardProps {
+  title: string;
+  description: string;
+  features: string[];
+}
+
+const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, features }) => {
+  return (
+    <div className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
+      <h3 className="text-2xl font-bold mb-4">{title}</h3>
+      <p className="text-gray-600 mb-6">{description}</p>
+      <ul className="space-y-3">
+        {features.map((feature) => (
+          <li key={feature} className="flex items-center text-gray-700">
+            <RiCheckLine className="text-primary mr-2 flex-shrink-0" />
+            {feature}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+const Services: React.FC = () => {
   const services = [
     {
       title: 'MEP Studies',
@@ -63,7 +86,7 @@ export default function Services() {
         'Timeline management'
       ]
     }
-  ]
+  ];
 
   return (
     <div className="pt-24">
@@ -71,21 +94,12 @@ export default function Services() {
       <div className="bg-secondary text-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-5xl font-bold mb-6"
-            >
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Our Services
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-xl text-gray-300"
-            >
+            </h1>
+            <p className="text-xl text-gray-300">
               Comprehensive construction and engineering solutions for your projects
-            </motion.p>
+            </p>
           </div>
         </div>
       </div>
@@ -94,26 +108,13 @@ export default function Services() {
       <div className="py-20">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <motion.div
+            {services.map((service) => (
+              <ServiceCard
                 key={service.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow"
-              >
-                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                <p className="text-gray-600 mb-6">{service.description}</p>
-                <ul className="space-y-3">
-                  {service.features.map((feature) => (
-                    <li key={feature} className="flex items-center text-gray-700">
-                      <RiCheckLine className="text-primary mr-2 flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
+                title={service.title}
+                description={service.description}
+                features={service.features}
+              />
             ))}
           </div>
         </div>
@@ -139,5 +140,7 @@ export default function Services() {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default Services;
