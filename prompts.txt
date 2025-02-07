@@ -1,6 +1,0 @@
-Replace the text of below HTML section with suitable text from below given content, 
-Generate the suitable sample text for the below html section  
-
-```
-
-Rewrite the content in following topic as unordered list, generate detailed content based on below topic
