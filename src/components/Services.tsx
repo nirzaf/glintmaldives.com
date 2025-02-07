@@ -1,55 +1,124 @@
 import React from 'react';
+import { RiBuilding4Line, RiPencilRuler2Line, RiCalculatorLine, RiToolsLine, RiFlowChart, RiShieldCheckLine } from 'react-icons/ri';
+import Section from './ui/Section';
+import Card from './ui/Card';
+import Grid from './ui/Grid';
+import Button from './ui/Button';
 
-interface ServiceCardProps {
+interface Service {
   title: string;
   description: string;
-  imageUrl?: string;
-  delay?: number;
+  icon: React.ReactNode;
+  features: string[];
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, imageUrl, delay = 100 }) => {
-  return (
-    <div className="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay={delay}>
-      <div className="icon-box">
-        {imageUrl && (
-          <img src={imageUrl} alt={title} className="icon" style={{ width: '100%', height: 'auto' }} />
-        )}
-        <h4><a href="">{title}</a></h4>
-        <p>{description}</p>
-      </div>
-    </div>
-  );
-};
+const services: Service[] = [
+  {
+    title: 'MEP Studies',
+    description: 'Comprehensive mechanical, electrical, and plumbing analysis for optimal system design.',
+    icon: <RiCalculatorLine />,
+    features: [
+      'Load calculations',
+      'Energy analysis',
+      'System optimization',
+      'Cost estimation'
+    ]
+  },
+  {
+    title: 'System Design',
+    description: 'Expert design services for all MEP systems with focus on efficiency and sustainability.',
+    icon: <RiPencilRuler2Line />,
+    features: [
+      'HVAC systems',
+      'Electrical systems',
+      'Plumbing systems',
+      'Fire protection'
+    ]
+  },
+  {
+    title: 'Engineering Calculations',
+    description: 'Precise calculations and analysis to ensure system performance and compliance.',
+    icon: <RiCalculatorLine />,
+    features: [
+      'Thermal calculations',
+      'Pressure calculations',
+      'Power calculations',
+      'Flow analysis'
+    ]
+  },
+  {
+    title: 'Construction Supervision',
+    description: 'Professional oversight of MEP installation and construction processes.',
+    icon: <RiToolsLine />,
+    features: [
+      'Quality control',
+      'Timeline management',
+      'Safety compliance',
+      'Technical guidance'
+    ]
+  },
+  {
+    title: 'Project Management',
+    description: 'End-to-end project management services for MEP installations.',
+    icon: <RiFlowChart />,
+    features: [
+      'Resource planning',
+      'Schedule management',
+      'Risk assessment',
+      'Progress tracking'
+    ]
+  },
+  {
+    title: 'Quality Assurance',
+    description: 'Comprehensive quality control and assurance for all MEP works.',
+    icon: <RiShieldCheckLine />,
+    features: [
+      'Standards compliance',
+      'Testing protocols',
+      'Documentation',
+      'Performance verification'
+    ]
+  }
+];
 
 const Services: React.FC = () => {
   return (
-    <section id="services" className="services">
-      <div className="container" data-aos="fade-up">
-        <div className="section-title">
-          <h2>Services</h2>
-          <p>Check our Services</p>
-        </div>
-
-        <div className="row">
-          <ServiceCard
-            title="WiiHOM Smart Siren"
-            description="A loud alarm system that integrates with the WiiHOM ecosystem for security alerts."
-            imageUrl="https://res.cloudinary.com/dogglueub/image/upload/c_fit,h_744,q_auto:eco,w_744/v1713582183/OIP_ao0gea.jpg"
-          />
-          <ServiceCard
-            title="Smart Security"
-            description="Comprehensive security solutions for residential and commercial properties."
-            delay={200}
-          />
-          <ServiceCard
-            title="WiiHOM Smart Wall Outlet"
-            description="A wall outlet replacement with built-in smart plug control."
-            imageUrl="https://res.cloudinary.com/dogglueub/image/upload/w_1000,ar_1:1,c_fill,g_auto/v1713593325/2024-04-20_09-07-56_dqz3au.png"
-            delay={300}
-          />
-        </div>
-      </div>
-    </section>
+    <Section
+      id="services"
+      title="Our Services"
+      subtitle="Comprehensive MEP solutions tailored to your needs"
+      bgColor="gray"
+    >
+      <Grid cols={1} mdCols={2} lgCols={3} gap={8}>
+        {services.map((service, index) => (
+          <Card
+            key={index}
+            title={service.title}
+            description={service.description}
+            icon={service.icon}
+            className="h-full"
+          >
+            <ul className="mt-4 space-y-2">
+              {service.features.map((feature, idx) => (
+                <li key={idx} className="flex items-center text-gray-600">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mr-2" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-6">
+              <Button
+                variant="ghost"
+                className="text-primary hover:bg-primary/10"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Learn More
+              </Button>
+            </div>
+          </Card>
+        ))}
+      </Grid>
+    </Section>
   );
 };
 
