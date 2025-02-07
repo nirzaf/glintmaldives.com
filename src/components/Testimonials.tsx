@@ -80,6 +80,13 @@ const testimonials: TestimonialProps[] = [
     position: "Facility Manager",
     company: "Azure Hotels",
     image: "https://ik.imagekit.io/orupgykea/testimonials/testimonials-5.jpg?updatedAt=1738958960683"
+  },
+  {
+    content: "Their innovative approach to sustainable MEP solutions has transformed our resort's efficiency. The energy savings and performance improvements have exceeded our expectations.",
+    name: "James Rahman",
+    position: "Sustainability Director",
+    company: "Emerald Island Resort",
+    image: "https://ik.imagekit.io/orupgykea/testimonials/testimonials-1.jpg?updatedAt=1738958960950"
   }
 ];
 
