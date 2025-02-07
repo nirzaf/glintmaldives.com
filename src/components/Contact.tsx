@@ -207,7 +207,7 @@ const Contact: React.FC = () => {
         <div className="mt-16">
           <div className="bg-white rounded-xl shadow-lg overflow-hidden">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.2940099051434!2d73.50973007454825!3d4.175417096926876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b3f7f6d0f1e19af%3A0x9f9b8e878e0e1e0a!2sMale%2C%20Maldives!5e0!3m2!1sen!2sus!4v1707330000000!5m2!1sen!2sus"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8159097.348826552!2d73.2403564!3d3.1120982500000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48875c4083c3fe8d%3A0x1488c51f95e352a7!2sGlint%20Maldives!5e0!3m2!1sen!2sae!4v1738967424367!5m2!1sen!2sae"
               width="100%"
               height="400"
               style={{ border: 0 }}
