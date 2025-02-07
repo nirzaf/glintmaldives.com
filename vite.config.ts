@@ -29,8 +29,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
-          ui: ['@headlessui/react', 'framer-motion', 'aos'],
-          utils: ['aos', 'swiper', 'glightbox']
+          ui: ['@headlessui/react', 'aos']
         }
       }
     }
