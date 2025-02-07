@@ -10,6 +10,7 @@ interface Service {
   description: string;
   icon: React.ReactNode;
   features: string[];
+  imageUrl: string;
 }
 
 const services: Service[] = [
@@ -17,6 +18,7 @@ const services: Service[] = [
     title: 'MEP Studies',
     description: 'Comprehensive mechanical, electrical, and plumbing analysis for optimal system design.',
     icon: <RiCalculatorLine />,
+    imageUrl: 'https://ik.imagekit.io/orupgykea/portfolio/portfolio-1.jpg?updatedAt=1738958960932',
     features: [
       'Load calculations',
       'Energy analysis',
@@ -28,6 +30,7 @@ const services: Service[] = [
     title: 'System Design',
     description: 'Expert design services for all MEP systems with focus on efficiency and sustainability.',
     icon: <RiPencilRuler2Line />,
+    imageUrl: 'https://ik.imagekit.io/orupgykea/portfolio/portfolio-2.jpg?updatedAt=1738958964660',
     features: [
       'HVAC systems',
       'Electrical systems',
@@ -39,6 +42,7 @@ const services: Service[] = [
     title: 'Engineering Calculations',
     description: 'Precise calculations and analysis to ensure system performance and compliance.',
     icon: <RiCalculatorLine />,
+    imageUrl: 'https://ik.imagekit.io/orupgykea/portfolio/portfolio-3.jpg?updatedAt=1738958965671',
     features: [
       'Thermal calculations',
       'Pressure calculations',
@@ -50,6 +54,7 @@ const services: Service[] = [
     title: 'Construction Supervision',
     description: 'Professional oversight of MEP installation and construction processes.',
     icon: <RiToolsLine />,
+    imageUrl: 'https://ik.imagekit.io/orupgykea/portfolio/portfolio-4.jpg?updatedAt=1738958965775',
     features: [
       'Quality control',
       'Timeline management',
@@ -61,6 +66,7 @@ const services: Service[] = [
     title: 'Project Management',
     description: 'End-to-end project management services for MEP installations.',
     icon: <RiFlowChart />,
+    imageUrl: 'https://ik.imagekit.io/orupgykea/portfolio/portfolio-5.jpg?updatedAt=1738958965936',
     features: [
       'Resource planning',
       'Schedule management',
@@ -72,6 +78,7 @@ const services: Service[] = [
     title: 'Quality Assurance',
     description: 'Comprehensive quality control and assurance for all MEP works.',
     icon: <RiShieldCheckLine />,
+    imageUrl: 'https://ik.imagekit.io/orupgykea/portfolio/portfolio-6.jpg?updatedAt=1738958965752',
     features: [
       'Standards compliance',
       'Testing protocols',
@@ -96,6 +103,7 @@ const Services: React.FC = () => {
             title={service.title}
             description={service.description}
             icon={service.icon}
+            imageUrl={service.imageUrl}
             className="h-full"
           >
             <ul className="mt-4 space-y-2">

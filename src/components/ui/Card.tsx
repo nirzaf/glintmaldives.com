@@ -1,6 +1,14 @@
-import React, { useState } from 'react';
-import { CardProps } from '../../types';
+import React from 'react';
 import clsx from 'clsx';
+import { BaseComponentProps } from '../../types';
+
+interface CardProps extends BaseComponentProps {
+  title?: string;
+  description?: string;
+  icon?: React.ReactNode;
+  imageUrl?: string;
+  hover?: boolean;
+}
 
 /**
  * Card component for displaying content in a consistent format
@@ -9,75 +17,37 @@ const Card: React.FC<CardProps> = ({
   title,
   description,
   icon,
-  image,
-  tags,
-  href,
-  onClick,
+  imageUrl,
+  hover = true,
   className,
   children
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const CardWrapper = href ? 'a' : 'div';
-  const cardProps = href ? { href, target: '_blank', rel: 'noopener noreferrer' } : {};
-
   return (
-    <CardWrapper
-      {...cardProps}
-      onClick={onClick}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    <div
       className={clsx(
-        'group block rounded-xl bg-white shadow-lg transition-all duration-300',
-        (href || onClick) && 'cursor-pointer hover:shadow-xl',
+        'rounded-lg bg-white p-6 shadow-sm',
+        hover && 'transition-all duration-300 hover:shadow-md hover:-translate-y-1',
         className
       )}
     >
-      {image && (
-        <div className="relative aspect-w-16 aspect-h-9 rounded-t-xl overflow-hidden">
+      {imageUrl && (
+        <div className="relative h-48 w-full mb-6 overflow-hidden rounded-lg">
           <img
-            src={image}
+            src={imageUrl}
             alt={title}
-            className={clsx(
-              'w-full h-full object-cover transition-transform duration-300',
-              isHovered && 'scale-110'
-            )}
+            className="h-full w-full object-cover transition-transform duration-300 hover:scale-110"
           />
-          <div className={clsx(
-            'absolute inset-0 bg-gradient-to-t from-black/60 to-transparent transition-opacity duration-300',
-            isHovered ? 'opacity-100' : 'opacity-0'
-          )} />
         </div>
       )}
-      <div className="p-6">
-        <div className="flex items-center space-x-3 mb-4">
-          {icon && (
-            <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl">
-              {icon}
-            </div>
-          )}
-          <h3 className="text-xl font-semibold text-gray-900 group-hover:text-primary transition-colors duration-300">
-            {title}
-          </h3>
+      {icon && (
+        <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+          <span className="h-6 w-6">{icon}</span>
         </div>
-        {description && (
-          <p className="text-gray-600 mb-4">{description}</p>
-        )}
-        {tags && tags.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {tags.map((tag, index) => (
-              <span
-                key={index}
-                className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
-        {children}
-      </div>
-    </CardWrapper>
+      )}
+      {title && <h3 className="mb-2 text-xl font-semibold text-gray-900">{title}</h3>}
+      {description && <p className="mb-4 text-gray-600">{description}</p>}
+      {children}
+    </div>
   );
 };
 
