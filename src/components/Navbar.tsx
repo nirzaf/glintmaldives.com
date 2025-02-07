@@ -17,11 +17,11 @@ export default function Navbar({ isScrolled }: NavbarProps) {
   const scrollTo = useScrollTo();
 
   const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/#about' },
-    { name: 'Services', href: '/services' },
-    { name: 'Portfolio', href: '/portfolio' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Home', href: '#hero' },
+    { name: 'About', href: '#about' },
+    { name: 'Services', href: '#services' },
+    { name: 'Portfolio', href: '#portfolio' },
+    { name: 'Contact', href: '#contact' }
   ];
 
   useEffect(() => {
@@ -45,17 +45,17 @@ export default function Navbar({ isScrolled }: NavbarProps) {
   }, []);
 
   const handleNavigation = (href: string) => {
-    if (href.startsWith('/#')) {
-      const elementId = href.substring(2);
-      if (location.pathname !== '/') {
-        navigate('/');
-        // Wait for navigation to complete before scrolling
-        setTimeout(() => scrollTo(elementId), 100);
-      } else {
-        scrollTo(elementId);
-      }
-    } else {
-      navigate(href);
+    const elementId = href.substring(1);
+    const element = document.getElementById(elementId);
+    if (element) {
+      const offset = 80; // Height of fixed navbar
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
     setIsOpen(false);
   };

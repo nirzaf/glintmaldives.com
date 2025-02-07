@@ -10,7 +10,7 @@ const Home: React.FC = () => {
   return (
     <>
       <Hero />
-      <main id="main">
+      <main id="main" className="overflow-hidden">
         <About />
         <Features />
         <Services />
