@@ -9,82 +9,45 @@ interface Service {
   title: string;
   description: string;
   icon: React.ReactNode;
-  features: string[];
   imageUrl: string;
 }
 
 const services: Service[] = [
   {
-    title: 'MEP Studies',
-    description: 'Comprehensive mechanical, electrical, and plumbing analysis for optimal system design.',
-    icon: <RiCalculatorLine />,
-    imageUrl: 'https://ik.imagekit.io/orupgykea/portfolio/portfolio-1.jpg?updatedAt=1738958960932',
-    features: [
-      'Load calculations',
-      'Energy analysis',
-      'System optimization',
-      'Cost estimation'
-    ]
+    title: 'MEP Design',
+    description: 'Comprehensive mechanical, electrical, and plumbing design solutions for modern buildings.',
+    icon: <RiPencilRuler2Line className="w-6 h-6" />,
+    imageUrl: 'https://ik.imagekit.io/orupgykea/portfolio/portfolio-1.jpg?updatedAt=1738958960932'
   },
   {
-    title: 'System Design',
-    description: 'Expert design services for all MEP systems with focus on efficiency and sustainability.',
-    icon: <RiPencilRuler2Line />,
-    imageUrl: 'https://ik.imagekit.io/orupgykea/portfolio/portfolio-2.jpg?updatedAt=1738958964660',
-    features: [
-      'HVAC systems',
-      'Electrical systems',
-      'Plumbing systems',
-      'Fire protection'
-    ]
+    title: 'HVAC Systems',
+    description: 'Advanced heating, ventilation, and air conditioning solutions for optimal comfort.',
+    icon: <RiBuilding4Line className="w-6 h-6" />,
+    imageUrl: 'https://ik.imagekit.io/orupgykea/portfolio/portfolio-2.jpg?updatedAt=1738958964660'
   },
   {
-    title: 'Engineering Calculations',
-    description: 'Precise calculations and analysis to ensure system performance and compliance.',
-    icon: <RiCalculatorLine />,
-    imageUrl: 'https://ik.imagekit.io/orupgykea/portfolio/portfolio-3.jpg?updatedAt=1738958965671',
-    features: [
-      'Thermal calculations',
-      'Pressure calculations',
-      'Power calculations',
-      'Flow analysis'
-    ]
+    title: 'Electrical Systems',
+    description: 'State-of-the-art electrical design and implementation for all building types.',
+    icon: <RiCalculatorLine className="w-6 h-6" />,
+    imageUrl: 'https://ik.imagekit.io/orupgykea/portfolio/portfolio-3.jpg?updatedAt=1738958965671'
   },
   {
-    title: 'Construction Supervision',
-    description: 'Professional oversight of MEP installation and construction processes.',
-    icon: <RiToolsLine />,
-    imageUrl: 'https://ik.imagekit.io/orupgykea/portfolio/portfolio-4.jpg?updatedAt=1738958965775',
-    features: [
-      'Quality control',
-      'Timeline management',
-      'Safety compliance',
-      'Technical guidance'
-    ]
+    title: 'Fire Safety',
+    description: 'Comprehensive fire protection systems and safety solutions.',
+    icon: <RiShieldCheckLine className="w-6 h-6" />,
+    imageUrl: 'https://ik.imagekit.io/orupgykea/portfolio/portfolio-4.jpg?updatedAt=1738958965775'
+  },
+  {
+    title: 'Plumbing Systems',
+    description: 'Modern plumbing solutions with focus on efficiency and sustainability.',
+    icon: <RiToolsLine className="w-6 h-6" />,
+    imageUrl: 'https://ik.imagekit.io/orupgykea/portfolio/portfolio-5.jpg?updatedAt=1738958965936'
   },
   {
     title: 'Project Management',
-    description: 'End-to-end project management services for MEP installations.',
-    icon: <RiFlowChart />,
-    imageUrl: 'https://ik.imagekit.io/orupgykea/portfolio/portfolio-5.jpg?updatedAt=1738958965936',
-    features: [
-      'Resource planning',
-      'Schedule management',
-      'Risk assessment',
-      'Progress tracking'
-    ]
-  },
-  {
-    title: 'Quality Assurance',
-    description: 'Comprehensive quality control and assurance for all MEP works.',
-    icon: <RiShieldCheckLine />,
-    imageUrl: 'https://ik.imagekit.io/orupgykea/portfolio/portfolio-6.jpg?updatedAt=1738958965752',
-    features: [
-      'Standards compliance',
-      'Testing protocols',
-      'Documentation',
-      'Performance verification'
-    ]
+    description: 'End-to-end project management and coordination services.',
+    icon: <RiFlowChart className="w-6 h-6" />,
+    imageUrl: 'https://ik.imagekit.io/orupgykea/portfolio/portfolio-6.jpg?updatedAt=1738958965752'
   }
 ];
 
@@ -94,9 +57,9 @@ const Services: React.FC = () => {
       id="services"
       title="Our Services"
       subtitle="Comprehensive MEP solutions tailored to your needs"
-      bgColor="gray"
+      className="bg-gray-50"
     >
-      <Grid cols={1} mdCols={2} lgCols={3} gap={8}>
+      <Grid cols={1} mdCols={2} lgCols={3} gap={6}>
         {services.map((service, index) => (
           <Card
             key={index}
@@ -104,23 +67,15 @@ const Services: React.FC = () => {
             description={service.description}
             icon={service.icon}
             imageUrl={service.imageUrl}
-            className="h-full"
+            className="group hover:shadow-lg transition-all duration-300"
           >
-            <ul className="mt-4 space-y-2">
-              {service.features.map((feature, idx) => (
-                <li key={idx} className="flex items-center text-gray-600">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mr-2" />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-6">
+            <div className="mt-4">
               <Button
-                variant="ghost"
-                className="text-primary hover:bg-primary/10"
+                variant="text"
+                className="text-primary group-hover:translate-x-2 transition-transform duration-300"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Learn More
+                Learn More →
               </Button>
             </div>
           </Card>

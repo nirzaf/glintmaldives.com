@@ -59,76 +59,68 @@ const Portfolio: React.FC = () => {
       title: "Solitaire Apartments Maldives",
       description: "Comprehensive MEP design and implementation for luxury residential apartments.",
       icon: <RiBuilding4Line />,
-      image: "https://res.cloudinary.com/dogglueub/image/upload/v1706250894/Construction%20Sites/IMG_1025_mcvae8.jpg",
+      image: "https://ik.imagekit.io/orupgykea/portfolio/portfolio-1.jpg?updatedAt=1738958960932",
       technologies: ["HVAC", "Plumbing", "Electrical", "Fire Protection"]
     },
     {
       title: "National School of Maldives",
       description: "Complete educational facility MEP systems design and installation.",
       icon: <RiBuilding4Line />,
-      image: "https://res.cloudinary.com/dogglueub/image/upload/v1706250918/Construction%20Sites/IMG_0384_uxofmh.jpg",
+      image: "https://ik.imagekit.io/orupgykea/portfolio/portfolio-2.jpg?updatedAt=1738958964660",
       technologies: ["HVAC", "Plumbing", "Low Current Systems"]
     },
     {
       title: "Regional Waste Management System",
       description: "Innovative waste management solutions for regional facilities.",
       icon: <RiRecycleLine />,
-      image: "/assets/img/portfolio/waste-management.jpg",
+      image: "https://ik.imagekit.io/orupgykea/portfolio/portfolio-3.jpg?updatedAt=1738958965671",
       technologies: ["Mechanical Systems", "Automation", "Environmental Control"]
     },
     {
       title: "IGMH Hospital Fire System",
       description: "State-of-the-art fire protection system for healthcare facility.",
       icon: <RiFireLine />,
-      image: "/assets/img/portfolio/hospital.jpg",
+      image: "https://ik.imagekit.io/orupgykea/portfolio/portfolio-4.jpg?updatedAt=1738958965775",
       technologies: ["Fire Protection", "Safety Systems", "Building Automation"]
     },
     {
       title: "AZZROVA Solar PV System",
       description: "Renewable energy implementation with solar power systems.",
       icon: <RiSunLine />,
-      image: "/assets/img/portfolio/solar.jpg",
+      image: "https://ik.imagekit.io/orupgykea/portfolio/portfolio-5.jpg?updatedAt=1738958965936",
       technologies: ["Solar PV", "Electrical", "Energy Management"]
     },
     {
       title: "Ceylon Electricity Board ELV",
       description: "Extra-low voltage systems implementation for power infrastructure.",
       icon: <RiFlashlightLine />,
-      image: "/assets/img/portfolio/electricity.jpg",
+      image: "https://ik.imagekit.io/orupgykea/portfolio/portfolio-6.jpg?updatedAt=1738958965752",
       technologies: ["ELV Systems", "Power Distribution", "Control Systems"]
     }
   ];
 
   return (
-    <section id="portfolio" className="bg-gray-50 py-20">
-      <div className="container mx-auto px-4" data-aos="fade-up">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Our Featured Projects
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Explore our diverse portfolio of successful projects across various sectors,
-            showcasing our expertise in MEP solutions.
+    <section id="portfolio" className="py-20 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Portfolio</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Explore our diverse range of successful MEP projects across the Maldives,
+            showcasing our expertise in delivering innovative engineering solutions.
           </p>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {portfolioItems.map((item, index) => (
-            <PortfolioItem
+            <motion.div
               key={index}
-              {...item}
-            />
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <PortfolioItem {...item} />
+            </motion.div>
           ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <a
-            href="/portfolio"
-            className="inline-flex items-center space-x-2 bg-primary text-white px-8 py-3 rounded-full font-medium hover:bg-secondary transition-colors duration-300"
-          >
-            <span>View All Projects</span>
-            <RiExternalLinkLine className="text-xl" />
-          </a>
         </div>
       </div>
     </section>
