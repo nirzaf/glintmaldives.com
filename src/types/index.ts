@@ -8,6 +8,8 @@ export interface SectionProps extends BaseComponentProps {
   title: string;
   subtitle?: string;
   bgColor?: 'primary' | 'secondary' | 'white' | 'gray';
+  titleClassName?: string;
+  subtitleClassName?: string;
 }
 
 export interface ButtonProps extends BaseComponentProps {

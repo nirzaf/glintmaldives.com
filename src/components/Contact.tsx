@@ -12,7 +12,14 @@ interface ContactInfo {
 const BASEROW_API_CONFIG = {
   baseURL: 'https://api.baserow.io',
   tableId: '443316',
-  token: process.env.BASEROW_API_TOKEN || 'YOUR_API_TOKEN_HERE'
+  token: (() => {
+    const token = import.meta.env.VITE_BASEROW_API_TOKEN;
+    if (!token) {
+      console.error('VITE_BASEROW_API_TOKEN is not set in environment variables');
+      return '';
+    }
+    return token;
+  })()
 };
 
 const Contact: React.FC = () => {
@@ -25,6 +32,7 @@ const Contact: React.FC = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const contactInfo: ContactInfo[] = [
     {
@@ -59,8 +67,16 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!BASEROW_API_CONFIG.token) {
+      setSubmitStatus('error');
+      setErrorMessage('API configuration error. Please contact support.');
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    setErrorMessage('');
     
     try {
       const response = await axios({
@@ -87,9 +103,17 @@ const Contact: React.FC = () => {
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitStatus('error');
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 401) {
+          setErrorMessage('Authentication error. Please contact support.');
+        } else {
+          setErrorMessage(error.response?.data?.error || 'Failed to send message. Please try again.');
+        }
+      } else {
+        setErrorMessage('An unexpected error occurred. Please try again.');
+      }
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus('idle'), 5000);
     }
   };
 
@@ -221,7 +245,7 @@ const Contact: React.FC = () => {
                     <p className="text-green-600 font-medium">Message sent successfully!</p>
                   )}
                   {submitStatus === 'error' && (
-                    <p className="text-red-600 font-medium">Failed to send message. Please try again.</p>
+                    <p className="text-red-600 font-medium">{errorMessage}</p>
                   )}
                 </div>
               </form>
