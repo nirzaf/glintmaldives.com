@@ -1,11 +1,26 @@
 import React, { useState } from 'react';
 import { RiMapPin2Line, RiPhoneLine, RiMailLine, RiTimeLine, RiSendPlaneLine } from 'react-icons/ri';
+import axios from 'axios';
 
 interface ContactInfo {
   icon: React.ReactNode;
   title: string;
   details: string[];
 }
+
+// Baserow API configuration
+const BASEROW_API_CONFIG = {
+  baseURL: 'https://api.baserow.io',
+  tableId: '443316',
+  token: (() => {
+    const token = import.meta.env.VITE_BASEROW_API_TOKEN;
+    if (!token) {
+      console.error('VITE_BASEROW_API_TOKEN is not set in environment variables');
+      return '';
+    }
+    return token;
+  })()
+};
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +32,7 @@ const Contact: React.FC = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const contactInfo: ContactInfo[] = [
     {
@@ -51,19 +67,53 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!BASEROW_API_CONFIG.token) {
+      setSubmitStatus('error');
+      setErrorMessage('API configuration error. Please contact support.');
+      return;
+    }
+
     setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setErrorMessage('');
     
     try {
-      // Here you would typically make an API call to your backend
-      // For now, we'll simulate a successful submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      const response = await axios({
+        method: 'POST',
+        url: `${BASEROW_API_CONFIG.baseURL}/api/database/rows/table/${BASEROW_API_CONFIG.tableId}/?user_field_names=true`,
+        headers: {
+          'Authorization': `Token ${BASEROW_API_CONFIG.token}`,
+          'Content-Type': 'application/json'
+        },
+        data: {
+          Name: formData.name,
+          Email: formData.email,
+          Subject: formData.subject,
+          Message: formData.message
+        }
+      });
+
+      if (response.status === 200) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        throw new Error('Failed to submit form');
+      }
     } catch (error) {
+      console.error('Error submitting form:', error);
       setSubmitStatus('error');
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 401) {
+          setErrorMessage('Authentication error. Please contact support.');
+        } else {
+          setErrorMessage(error.response?.data?.error || 'Failed to send message. Please try again.');
+        }
+      } else {
+        setErrorMessage('An unexpected error occurred. Please try again.');
+      }
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus('idle'), 3000);
     }
   };
 
@@ -195,7 +245,7 @@ const Contact: React.FC = () => {
                     <p className="text-green-600 font-medium">Message sent successfully!</p>
                   )}
                   {submitStatus === 'error' && (
-                    <p className="text-red-600 font-medium">Failed to send message. Please try again.</p>
+                    <p className="text-red-600 font-medium">{errorMessage}</p>
                   )}
                 </div>
               </form>
