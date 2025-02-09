@@ -14,11 +14,11 @@ const BASEROW_API_CONFIG = {
   tableId: '443316',
   token: (() => {
     const token = import.meta.env.VITE_BASEROW_API_TOKEN;
-    console.log(token);
     if (!token) {
       console.error('VITE_BASEROW_API_TOKEN is not set in environment variables');
       return '';
     }
+    console.log(token);
     return token;
   })()
 };
