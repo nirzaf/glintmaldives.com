@@ -71,8 +71,7 @@ const Contact: React.FC = () => {
 
     console.log(BASEROW_API_CONFIG.baseURL);
     console.log(BASEROW_API_CONFIG.tableId);
-    console.log(BASEROW_API_CONFIG.token);
-    
+
     if (!BASEROW_API_CONFIG.token) {
       console.error('VITE_BASEROW_API_TOKEN is not set in environment variables');
       setSubmitStatus('error');
