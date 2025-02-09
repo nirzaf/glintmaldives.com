@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { RiMapPin2Line, RiPhoneLine, RiMailLine, RiTimeLine, RiSendPlaneLine } from 'react-icons/ri';
 import axios from 'axios';
 
@@ -33,16 +33,6 @@ const Contact: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
-
-  // Add ref for tracking component mount state
-  const isMounted = React.useRef(true);
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      isMounted.current = false;
-    };
-  }, []);
 
   const contactInfo: ContactInfo[] = [
     {
@@ -88,9 +78,6 @@ const Contact: React.FC = () => {
     setSubmitStatus('idle');
     setErrorMessage('');
     
-    // Create cancel token
-    const cancelToken = axios.CancelToken.source();
-    
     try {
       const response = await axios({
         method: 'POST',
@@ -104,45 +91,30 @@ const Contact: React.FC = () => {
           Email: formData.email,
           Subject: formData.subject,
           Message: formData.message
-        },
-        cancelToken: cancelToken.token
+        }
       });
 
-      // Only update state if component is still mounted
-      if (isMounted.current) {
-        if (response.status === 200) {
-          setSubmitStatus('success');
-          setFormData({ name: '', email: '', subject: '', message: '' });
-        } else {
-          throw new Error('Failed to submit form');
-        }
+      if (response.status === 200) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        throw new Error('Failed to submit form');
       }
     } catch (error) {
-      // Only update state if component is still mounted and request wasn't cancelled
-      if (isMounted.current && !axios.isCancel(error)) {
-        console.error('Error submitting form:', error);
-        setSubmitStatus('error');
-        if (axios.isAxiosError(error)) {
-          if (error.response?.status === 401) {
-            setErrorMessage('Authentication error. Please contact support.');
-          } else {
-            setErrorMessage(error.response?.data?.error || 'Failed to send message. Please try again.');
-          }
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 401) {
+          setErrorMessage('Authentication error. Please contact support.');
         } else {
-          setErrorMessage('An unexpected error occurred. Please try again.');
+          setErrorMessage(error.response?.data?.error || 'Failed to send message. Please try again.');
         }
+      } else {
+        setErrorMessage('An unexpected error occurred. Please try again.');
       }
     } finally {
-      // Only update state if component is still mounted
-      if (isMounted.current) {
-        setIsSubmitting(false);
-      }
+      setIsSubmitting(false);
     }
-
-    // Cleanup function to cancel request if component unmounts
-    return () => {
-      cancelToken.cancel('Component unmounted');
-    };
   };
 
   return (

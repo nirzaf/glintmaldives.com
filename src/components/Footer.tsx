@@ -15,7 +15,9 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://www.facebook.com/people/Glint-Maldives-Pvt-Ltd/61553575228615/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
               >
                 <FaFacebookF />
@@ -96,10 +98,11 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
             <p className="text-gray-400 mb-2">
-              Male', Maldives
+              M. Fenthulha 20268, 4th floor, Koarukendi Magu,<br />
+              Maldives
             </p>
             <p className="text-gray-400 mb-2">
-              Phone: +960 XXX XXXX
+              Phone: +960 949-6228
             </p>
             <p className="text-gray-400 mb-2">
               Email: info@glintmaldives.com
@@ -109,7 +112,7 @@ export default function Footer() {
         
         <div className="border-t border-gray-800 mt-12 pt-8 text-center">
           <p className="text-gray-400">
-            © {new Date().getFullYear()} Glint Maldives. All rights reserved.
+            {new Date().getFullYear()} Glint Maldives. All rights reserved.
           </p>
         </div>
       </div>
